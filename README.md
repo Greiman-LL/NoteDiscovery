@@ -369,3 +369,20 @@ helm install my-NoteDiscovery NoteDiscovery/NoteDiscovery \
 See [values.yaml](helm/NoteDiscovery/values.yaml) for all configuration options.
 ### Ingress
 Comes with optional Ingress + TLS via cert-manager.
+
+
+## Environments
+
+NoteDiscovery operates three environments.
+
+| Env | Purpose | Deploy | Data | URL |
+|-----|---------|--------|------|-----|
+| **dev** | Day-to-day dev | On every push | Fresh seed data | dev.NoteDiscovery.example.com |
+| **staging** | Pre-prod verification | On merge to main | Production copy (anonymized) | staging.NoteDiscovery.example.com |
+| **production** | Live service | On tagged release | Real | NoteDiscovery.example.com |
+
+### Promotion Flow
+`dev → staging` (auto on merge) → manual approval → `production` (on tag)
+
+### Secrets Management
+All secrets in environment variables — never hardcoded. Rotate quarterly via Vault.
