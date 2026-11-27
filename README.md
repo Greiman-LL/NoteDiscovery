@@ -348,3 +348,24 @@ MIT License - Free to use, modify, and distribute.
 ---
 
 Made with ❤️ for the self-hosting community
+
+
+## Kubernetes
+
+Deploy NoteDiscovery to Kubernetes using Helm:
+
+```bash
+# Add chart
+helm repo add NoteDiscovery https://charts.example.com
+helm repo update
+
+# Install
+helm install my-NoteDiscovery NoteDiscovery/NoteDiscovery \
+  --namespace default \
+  --set image.tag=v1.2.0
+```
+
+### Values
+See [values.yaml](helm/NoteDiscovery/values.yaml) for all configuration options.
+### Ingress
+Comes with optional Ingress + TLS via cert-manager.
